@@ -71,7 +71,7 @@ module.exports = tasks.Tasks.fromObject({
             return printer.finish()
         }],
         stdin: '3 2    1 2   3 4   5 6     7 8',
-        stdinHint: 'Введите через пробел $n, m, A_{11}, A_{12}, \\ldots A_{nn}, x_1, \\ldots x_n$',
+        stdinHint: 'Введите через пробел $n, m, A_{11}, A_{12}, \\ldots A_{nm}, x_1, \\ldots x_m$',
         tags: ['complexity-3', 'arrays', 'math', 'matrices']
     }, {    // 3
         text: 'Даны натуральные числа $n$, $m$, прямоугольная матрица $A$ вещественных чисел (в ней $n$ строк и $m$ столбцов) и столбец $x$ из $n$ элементов. Напечатать матричное произведение $x^T A$.',
@@ -87,7 +87,7 @@ module.exports = tasks.Tasks.fromObject({
             return printer.finish()
         }],
         stdin: '3 2    1 2   3 4   5 6     7 8 9',
-        stdinHint: 'Введите через пробел $n, m, A_{11}, A_{12}, \\ldots A_{nn}, x_1, \\ldots x_m$',
+        stdinHint: 'Введите через пробел $n, m, A_{11}, A_{12}, \\ldots A_{nm}, x_1, \\ldots x_n$',
         tags: ['complexity-3', 'arrays', 'math', 'matrices']
     }, {    // 4
         text: [
