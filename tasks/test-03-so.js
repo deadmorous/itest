@@ -263,17 +263,23 @@ module.exports = tasks.Tasks.fromObject({
         scene: ['program', function(stdin) {
             var args = ppi(stdin, 'whole n, uint a[n]')
             var n = args.n,   a = args.a
-            var A = a[0],   B = A
+            var A = a[0],   B
+            var hasB = false
             for (var i=1; i<n; ++i) {
                 var ai = a[i]
                 if (A < ai) {
                     B = A
+                    hasB = true
                     A = ai
+                }
+                else if (A != ai && !hasB) {
+                    B = ai
+                    hasB = true
                 }
             }
             var printer = lp()
             printer.println(a.join(' '))
-            if (A === B)
+            if (!hasB)
                 printer.println('a = ' + A + ', b не определено (все элементы массива одинаковые)')
             else
                 printer.println('a = ' + A + ', b = ' + B)
