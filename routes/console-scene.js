@@ -351,6 +351,10 @@ Scene.prototype.paint = function(w, h) {
     return lines.join('\n')
 }
 
+Scene.prototype.dataType = function() {
+    return 'stdout'
+}
+
 module.exports = {
     Scene: Scene,
     geom: {

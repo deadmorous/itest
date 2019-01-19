@@ -25,7 +25,8 @@ router
                     res.send(JSON.stringify({
                         width: taskParam.width,
                         height: taskParam.height,
-                        data: output.join('\n')
+                        data: output.join('\n'),
+                        dataType: task.scene().dataType()
                     }))
                 })
                 .on('error', function(output, message) {

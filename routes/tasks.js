@@ -1,11 +1,13 @@
 var csc = require('./console-scene.js')
 var prog = require('./program-scene.js')
+var html = require('./html-scene.js')
 var pgen = require('./pgen.js')
 var _ = require('lodash')
 
 var sceneClasses = {
     'shapes': csc.Scene.fromObject,
-    'program': prog.Program.fromObject
+    'program': prog.Program.fromObject,
+    'html': html.Url.fromObject
 }
 
 function Task(data) {

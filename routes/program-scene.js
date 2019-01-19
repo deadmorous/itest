@@ -25,4 +25,8 @@ Program.prototype.paint = function(w, h, stdin) {
     return program instanceof Function? runProgram(): 'N/A'
 }
 
+Program.prototype.dataType = function() {
+    return 'stdout'
+}
+
 module.exports = { Program: Program }

@@ -28,7 +28,11 @@ block content
                     .done(function(d) {
                         d = JSON.parse(d)
                         var w = d.width,   h = d.height
-                        dst.find('.console-data').html(d.data.replace(/\n/g, '<br/>').replace(/ /g, '&nbsp;'))
+                        let transformData = {
+                            stdout: s => s.replace(/\n/g, '<br/>').replace(/ /g, '&nbsp;'),
+                            staticHtml: s => `<iframe src="/task-doc/${s}"></iframe>`
+                        }
+                        dst.find('.console-data').html(transformData[d.dataType](d.data))
                         $('#console-size').text(w + ' x ' + h)
                     })
                     .fail(msg.ajaxError)
@@ -165,6 +169,14 @@ block content
         .task-links li {
             display: inline;
             margin-right: 1em;
+        }
+        .console-data > iframe {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            border: none;
         }
     if team
         p.team-summary= team.summary()
