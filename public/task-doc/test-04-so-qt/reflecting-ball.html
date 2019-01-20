@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="/javascripts/jquery-3.2.1.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                let scene$ = $('#scene')
+                let ball$ = scene$.find('circle')
+                let x = +ball$.attr('cx'),   y = +ball$.attr('cy'),   r = +ball$.attr('r')
+                let vangle = Math.random()*2*Math.PI,   vmagnitude = 300
+                let vx = vmagnitude*Math.cos(vangle),   vy = vmagnitude*Math.sin(vangle)
+                let xmin = r,   ymin = r,   xmax = scene$.innerWidth() - r,   ymax = scene$.innerHeight() - r
+                let dt = 0.04
+                setInterval(() => {
+                    let dx = vx*dt,    dy = vy*dt
+                    if ((x+dx <= xmin && vx < 0) || (x+dx >= xmax && vx > 0)) {
+                        vx = -vx
+                        dx = -dx
+                    }
+                    if ((y+dy <= ymin && vy < 0) || (y+dy >= ymax && vy > 0)) {
+                        vy = -vy
+                        dy = -dy
+                    }
+                    x += dx
+                    y += dy
+                    ball$.attr('cx', x).attr('cy', y)
+                }, dt*1000)
+            })
+        </script>
+        <style>
+            svg {
+                background-color: white;
+                width: 517px;
+                height: 300px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <svg id="scene">
+            <g transform="translate(0 300) scale(1 -1)">
+                <circle cx="258" cy="150" r="40" style="stroke: #666; stroke-width: 4; fill: #eee;"/>
+            </g>
+        </svg>
+    </body>
+</html>

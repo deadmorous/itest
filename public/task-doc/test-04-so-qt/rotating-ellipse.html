@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="/javascripts/jquery-3.2.1.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                let scene$ = $('#scene')
+                let ball$ = scene$.find('circle')
+                let angle = 0
+                let vangle = 90
+                let dt = 0.04
+                setInterval(() => {
+                    angle += vangle*dt
+                    ball$.attr('transform', `rotate(${angle}) scale(0.7, 1)`)
+                }, dt*1000)
+            })
+        </script>
+        <style>
+            svg {
+                background-color: white;
+                width: 500px;
+                height: 300px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <svg id="scene">
+            <g transform="translate(250 150)">
+                <circle cx="0" cy="0" r="140" transform="scale(0.7, 1)" style="stroke: #666; stroke-width: 4; fill: #eee;"/>
+            </g>
+        </svg>
+    </body>
+</html>

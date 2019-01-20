@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="/javascripts/jquery-3.2.1.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                let scene$ = $('#scene')
+                let cursor$ = scene$.find('circle')
+                scene$.hover(function() {
+                    cursor$.attr('opacity', 1)
+                }, function() {
+                    cursor$.attr('opacity', 0)
+                }).mousemove(function(e) {
+                    let o = scene$.offset()
+                    cursor$.attr({
+                        cx: e.pageX - o.left,
+                        cy: e.pageY - o.top
+                    })
+                })
+            })
+        </script>
+        <style>
+            svg {
+                background-color: white;
+                width: 500px;
+                height: 321px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+            }
+            svg circle {
+                cursor: none;
+                transition: opacity 300ms;
+            }
+        </style>
+    </head>
+    <body>
+        <svg id="scene">
+            <image xlink:href="/task-images/horse-holding-cat.jpg" x="0" y="0" width="500" height="321" />
+            <circle cx="150" cy="250" r="40" style="stroke: #666; stroke-width: 4; fill: #eee;"  opacity="0"/>
+        </svg>
+    </body>
+</html>

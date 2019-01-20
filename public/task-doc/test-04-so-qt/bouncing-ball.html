@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="/javascripts/jquery-3.2.1.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                let scene$ = $('#scene')
+                let ball$ = scene$.find('circle')
+                let y = +ball$.attr('cy')
+                let r = +ball$.attr('r')
+                let ymax = y
+                let ymin = r+10
+                let t = 0, y0 = y,  v0 = 0, dt = 0.04
+                let a = 1000
+                setInterval(() => {
+                    t += dt
+                    y = y0 + t*(v0 - 0.5*t*a)
+                    if (y <= ymin) {
+                        v0 = -(v0 - t*a)
+                        y0 = y
+                        t = 0
+                    }
+                    ball$.attr('cy', y)
+                }, dt*1000)
+            })
+        </script>
+        <style>
+            svg {
+                background-color: white;
+                width: 300px;
+                height: 300px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <svg id="scene">
+            <g transform="translate(0 300) scale(1 -1)">
+                <circle cx="150" cy="250" r="40" style="stroke: #666; stroke-width: 4; fill: #eee;"/>
+            </g>
+        </svg>
+    </body>
+</html>

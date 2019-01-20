@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="/javascripts/jquery-3.2.1.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                let scene$ = $('#scene')
+                let image$ = scene$.find('image')
+                let angle = 0
+                scene$.click(function() {
+                    angle -= 90;
+                    image$.css({transform: `rotate(${angle}deg)`})
+                })
+            })
+        </script>
+        <style>
+            svg {
+                background-color: white;
+                width: 450px;
+                height: 300px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+            }
+            svg image {
+                cursor: pointer;
+                transition: transform 500ms;
+                transform-origin: center;
+            }
+        </style>
+    </head>
+    <body>
+        <svg id="scene">
+            <image xlink:href="/task-images/darth-vader-vacation.jpg" x="0" y="0" width="450" height="300" />
+        </svg>
+    </body>
+</html>

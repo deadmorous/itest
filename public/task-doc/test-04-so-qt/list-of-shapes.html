@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SVG test</title>
+        <style>
+            body > div {
+                width: 300px;
+                margin: 10px;
+                background-color: white;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                padding: 10px;
+                display: flex;
+                flex-direction: column;
+            }
+            svg {
+                height: 300px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+            }
+            #scene {
+                margin-top: 10px;
+            }
+            #scene .shape {
+                stroke: #666;
+                stroke-width: 4;
+                fill: #eee;
+                transition: 300ms;
+            }
+        </style>
+        <script src="/javascripts/jquery-3.2.1.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                function selectShape(shape) {
+                    let scene$ = $('#scene')
+                    scene$.find('.shape').each(function() {
+                        let e$ = $(this)
+                        e$.attr('opacity', shape === e$.attr('id')? 1: 0)
+                    })
+                }
+                let ssel$ = $('#shape-selector')
+                ssel$.change(function() {
+                    selectShape($(this).val())
+                })
+            })
+        </script>
+    </head>
+    <body>
+        <div>
+            <select id="shape-selector">
+                <option value="circle">круг</option>
+                <option value="square">квадрат</option>
+                <option value="triangle">треугольник</option>
+            </select>
+            <svg id="scene">
+                <circle class="shape" id="circle" cx="150" cy="150" r="120" opacity="1"/>
+                <rect class="shape" id="square" x="30" y="30" width="240" height="240" opacity="0"/>
+                <path class="shape" id="triangle" d="M 30,50 270,50 150,270 Z" opacity="0"/>
+            </svg>
+        </div>
+    </body>
+</html>

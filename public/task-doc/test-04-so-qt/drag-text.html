@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                display: flex;
+                flex-direction: row;
+            }
+            body > * {
+                margin: 10px;
+                width: 300px;
+                height: 300px;
+                background-color: white;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                padding: 10px;
+            }
+            #input {
+                display: flex;
+                flex-direction: column;
+            }
+            #input > textarea {
+                flex: 1;
+                resize: none;
+            }
+            #scene {
+                width: 300px;
+                height: 300px;
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
+                flex-wrap: wrap;
+                overflow: auto;
+            }
+            #scene > span {
+                padding: 3px;
+                margin: 3px;
+                background-color: #eee;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                cursor: pointer;
+                user-select: none;
+            }
+        </style>
+        <script src="/javascripts/jquery-3.2.1.min.js"></script>
+        <script src="/javascripts/jquery-ui.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                let scene$ = $('#scene')
+                $('#start').click(function() {
+                    let words = $('#text').val().trim().split(/\s+/)
+                    scene$.html('')
+                    words.forEach((word, index) => {
+                        scene$.append($('<span>').text(word))
+                    })
+                    $('#scene > span').draggable()
+                })
+            })
+        </script>
+    </head>
+    <body>
+        <div id="input">
+            <textarea id="text">Мама мыла раму</textarea><br/>
+            <input id="start" type="button" value="Создать сцену"/>
+        </div>
+        <div id="scene"></div>
+    </body>
+</html>

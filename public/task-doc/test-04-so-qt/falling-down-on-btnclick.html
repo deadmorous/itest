@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="/javascripts/jquery-3.2.1.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                let scene$ = $('#scene')
+                let mrWeight$ = scene$.find('#mrWeight')
+                let man$ = scene$.find('#surprized')
+                let eyes$ = scene$.find('.eye')
+                let y = 250,   y0 = y
+                let ymin = 20
+                let t = 0, dt = 0.04
+                let T = 1
+                let a = 2*(y0-ymin)/(T*T)
+                let start$ = $('#start')
+                start$.click(function() {
+                    start$.prop('disabled', true)
+                    y = y0
+                    mrWeight$.attr('transform', `translate(0,${y})`)
+                    man$.attr('transform', 'translate(0 0)')
+                    eyes$.attr('transform', 'translate(0 0)')
+                    let handle = setInterval(() => {
+                        t += dt
+                        y = y0 - 0.5*t*t*a
+                        if (y <= ymin) {
+                            clearInterval(handle)
+                            start$.prop('disabled', false)
+                            t = 0
+                            return
+                        }
+                        mrWeight$.attr('transform', `translate(0,${y})`)
+                        man$.attr('transform', `translate(${t>0.5? (t-0.5)*230: 0} ${t>0.6? 600*(t-0.6)*(t-1): 0})`)
+                        eyes$.attr('transform', `translate(0 ${2*t-2})`)
+                    }, dt*1000)
+                })
+            })
+        </script>
+        <style>
+            svg {
+                background-color: white;
+                width: 300px;
+                height: 300px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+            }
+            #start {
+                margin-bottom: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <input id="start" type="button" value="Начать"/><br/>
+        <svg id="scene">
+            <g transform="translate(0 300) scale(1 -1)">
+                <g id="mrWeight" transform="translate(0,250)">
+                    <image xlink:href="/task-images/mr-weight.png" x="90" y="-40" width="90" height="81" transform="translate(0 0) scale(1 -1)"/>
+                </g>
+            </g>
+            <g id="surprized">
+                <g transform="translate(140 205) scale(2.5 2.5) translate(-26.828306,-30.016518)">
+                <circle
+                    id="path3713"
+                    cx="38.364582"
+                    cy="39.03125"
+                    r="8.8824406"
+                    style="fill:none;stroke:#000000;stroke-width:0.26458332;stroke-opacity:1" />
+                <circle
+                    style="fill:none;stroke:#000000;stroke-width:0.26458332;stroke-opacity:1"
+                    id="path4520"
+                    cx="35.279575"
+                    cy="36.946747"
+                    r="2.3386083" />
+                <circle
+                    style="fill:none;stroke:#000000;stroke-width:0.26458332;stroke-opacity:1"
+                    id="path4522"
+                    cx="41.961315"
+                    cy="37.614922"
+                    r="2.8731472" />
+                <circle
+                    style="fill:#000;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-opacity:1"
+                    class="eye"
+                    id="path4524"
+                    cx="34.978901"
+                    cy="36.579254"
+                    r="0.76839989" />
+                <circle
+                    style="fill:#000;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-opacity:1"
+                    class="eye"
+                    id="path4526"
+                    cx="41.326553"
+                    cy="38.583775"
+                    r="1.0356694" />
+                <ellipse
+                    style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.26458332;stroke-opacity:1"
+                    id="path4528"
+                    cx="44.63649"
+                    cy="36.459175"
+                    rx="3.6081386"
+                    ry="1.9711127"
+                    transform="rotate(10.622893)" />
+                <path
+                    style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 35.352585,42.13774 -0.106305,0.885883 0.637835,0.04725 0.141741,-1.015814"
+                    id="path4530"
+                    inkscape:connector-curvature="0" />
+                <path
+                    style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 37.573196,42.184986 -0.212612,1.063059 0.6024,0.153554 0.307105,-0.980376"
+                    id="path4532"
+                    inkscape:connector-curvature="0" />
+                <path
+                    style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 35.813242,45.681267 0.224426,-0.944941 0.602399,0.129931 -0.2008,0.992187"
+                    id="path4534"
+                    inkscape:connector-curvature="0"
+                    sodipodi:nodetypes="cccc" />
+                <path
+                    style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 38.42364,46.023807 0.04725,-1.122116 0.803199,-0.03543 0.04725,1.051242"
+                    id="path4536"
+                    inkscape:connector-curvature="0" />
+                <path
+                    style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="M 34.490326,47.063244 32.269718,60.670386 42.805804,60.575896 40.348958,47.771949"
+                    id="path4557"
+                    inkscape:connector-curvature="0" />
+                <path
+                    style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 35.104538,60.670386 -0.188987,5.149924 -1.653646,0.04725"
+                    id="path4559"
+                    inkscape:connector-curvature="0" />
+                <path
+                    style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 40.915922,60.623138 -0.0945,4.960939 -1.322915,-0.09449"
+                    id="path4561"
+                    inkscape:connector-curvature="0"
+                    sodipodi:nodetypes="ccc" />
+                <path
+                    style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 33.876115,50.27604 -5.480654,7.087055"
+                    id="path4563"
+                    inkscape:connector-curvature="0" />
+                <path
+                    style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 26.836309,57.457588 1.559152,-0.09449 -0.708705,1.181172"
+                    id="path4565"
+                    inkscape:connector-curvature="0" />
+                <path
+                    style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 28.395461,57.363095 0.377976,1.322916"
+                    id="path4567"
+                    inkscape:connector-curvature="0" />
+                <path
+                    style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 40.63244,49.283852 6.52009,8.409972 -0.519717,1.464658"
+                    id="path4569"
+                    inkscape:connector-curvature="0" />
+                <path
+                    style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 47.766739,58.874998 -0.614209,-1.181174 1.417411,0.09449"
+                    id="path4571"
+                    inkscape:connector-curvature="0" />
+                </g>
+            </g>
+        </svg>
+    </body>
+</html>
