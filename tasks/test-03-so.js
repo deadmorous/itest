@@ -272,9 +272,13 @@ module.exports = tasks.Tasks.fromObject({
                     hasB = true
                     A = ai
                 }
-                else if (A != ai && !hasB) {
-                    B = ai
-                    hasB = true
+                else if (A != ai) {
+                    if (!hasB) {
+                        B = ai
+                        hasB = true
+                    }
+                    else if (B < ai)
+                        B = ai
                 }
             }
             var printer = lp()
