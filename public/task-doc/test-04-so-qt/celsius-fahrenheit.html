@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="/javascripts/jquery-3.2.1.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                let scene$ = $('#scene')
+                let data = [{
+                    label: 'Градусы по Цельсию',
+                    output: t => 9*t/5+32
+                }, {
+                    label: 'Градусы по Фаренгейту',
+                    output: t => 5*(t-32)/9
+                }]
+                let input = 0;
+                function compute() {
+                    $('#temp_output').val(data[input].output(+$('#temp_input').val()))
+                }
+                function setup() {
+                    $('#label_input').text(data[input].label)
+                    $('#label_output').text(data[1-input].label)
+                    $('#temp_input').focus()[0].select()
+                    compute()
+                }
+                $('#swap').click(function() {
+                    input = 1-input
+                    $('#temp_input').val($('#temp_output').val())
+                    setup()
+                })
+                $('#temp_input').on('input', compute)
+                setup()
+            })
+        </script>
+        <style>
+            body {
+                font-family: sans-serif;
+            }
+            #scene {
+                background-color: white;
+                width: 500px;
+                height: 300px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+            }
+            td {
+                padding: 3px 10px;
+            }
+            #temp_output {
+                background-color: #eee;
+            }
+            input[type="text"] {
+                border: 1px solid #888;
+            }
+            #scene {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="scene">
+            <table>
+                <tbody>
+                    <tr>
+                        <td id="label_input"></td>
+                        <td rowspan="2"><input type="button" value="&lt;-&gt;" id="swap"/></td>
+                        <td id="label_output"></td>
+                    </tr>
+                    <tr>
+                            <td><input type="text" value="0" id="temp_input"/></td>
+                            <td><input type="text" value="" id="temp_output" readonly/></td>
+                        </tr>
+                    </tbody>
+            </table>
+        </div>
+    </body>
+</html>

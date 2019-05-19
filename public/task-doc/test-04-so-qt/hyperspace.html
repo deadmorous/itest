@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="/javascripts/jquery-3.2.1.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                let time = 0
+                let data = [
+                    { r: 300, cx: 0, cy: 0, color: '#fff' },
+                    { r: 94.9, cx: 0, cy: 0, color: '#ccc' },
+                    { r: 30, cx: 0, cy: 0, color: '#888' },
+                    { r: 9.49, cx: 0, cy: 0, color: '#444' },
+                    { r: 3, cx: 0, cy: 0, color: '#000' },
+                ]
+                const MinRadius = 3
+                const MaxRadius = 300
+                let dt = 0.04
+                setInterval(() => {
+                    time += dt
+                    data.forEach((v, i) => {
+                        v.r *= 1.1
+                    })
+                    if (data[1].r > MaxRadius) {
+                        let s = Math.sin(time)
+                        let c = Math.cos(time)
+                        let Rd = 10
+                        let xd = Rd*c
+                        let yd = Rd*s
+                        d1 = data.splice(0, 1)[0]
+                        d1.r = MinRadius
+                        d1.cx = xd
+                        d1.cy = yd
+                        data.push(d1)
+                    }
+                    data.forEach((v, i) => {
+                        $(`#c${i+1}`).attr({
+                            r: v.r,
+                            cx: v.cx,
+                            cy: v.cy,
+                            style: `fill: ${v.color};`
+                        })
+                    })
+                }, dt*1000)
+            })
+        </script>
+        <style>
+            svg {
+                background-color: #fff;
+                width: 500px;
+                height: 300px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <svg id="scene">
+            <g transform="translate(250 150)">
+                <circle id="c1" cx="0" cy="0"/>
+                <circle id="c2" cx="0" cy="0"/>
+                <circle id="c3" cx="0" cy="0"/>
+                <circle id="c4" cx="0" cy="0"/>
+                <circle id="c5" cx="0" cy="0"/>
+            </g>
+        </svg>
+    </body>
+</html>

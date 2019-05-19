@@ -43,6 +43,17 @@ module.exports = tasks.Tasks.fromObject({
             text: 'Виджет, на котором изображена картинка из файла. Клик на виджете приводит к тому, что картинка плавно поворачивается на 90 градусов против часовой стрелки; её центр остаётся неподвижным и всегда находится в центре виджета.',
             scene: ['html', 'test-04-so-qt/image-rotating-on-click.html'],
             tags: ['complexity-3', 'qt', 'painting']
+        }, {    // 10
+            text: 'Конвертер температур из градусов по Цельсию в градусы по Фаренгейту и обратно. Указание: $t_C=\\frac59(t_F-32)$, где $t_C$ &mdash; температура в градусах по Цельсию, $t_F$ &mdash; по Фаренгейту.',
+            scene: ['html', 'test-04-so-qt/celsius-fahrenheit.html'],
+            tags: ['complexity-3', 'qt', 'painting']
+        }, {    // 11
+            text: 'Сияющее солнце (анимация).',
+            scene: ['html', 'test-04-so-qt/shining-sun.html'],
+            tags: ['complexity-3', 'qt', 'painting']
+        }, {    // 12
+            text: 'Гиперпространственный переход (анимация).',
+            scene: ['html', 'test-04-so-qt/hyperspace.html'],
+            tags: ['complexity-3', 'qt', 'painting']
         }
 ]})
-

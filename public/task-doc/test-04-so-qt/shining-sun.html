@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="/javascripts/jquery-3.2.1.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                let crownPoints = time => {
+                    const phase = 0.2*time
+                    const rayLengthPhase = Math.pow(0.5*(1+Math.sin(10*time)), 3)
+                    const CrownRayCount = 20
+                    const CrownMinRadius = 95
+                    const CrownMaxRadius = 110 + 20*rayLengthPhase
+                    let da = 2*Math.PI / CrownRayCount
+                    let rotated = (point, angle) => {
+                        let c = Math.cos(angle), s = Math.sin(angle)
+                        return [point[0]*c-point[1]*s, point[0]*s+point[1]*c]
+                    }
+                    let sample = [rotated([CrownMinRadius, 0], da/3+phase), rotated([CrownMinRadius, 0], 2*da/3+phase), rotated([CrownMaxRadius, 0], da+phase)]
+                    let rotateSample = s => {
+                        for (let i=0, n=s.length; i<n; ++i)
+                            s[i] = rotated(s[i], da);
+                    }
+                    let result = []
+                    result.push(rotated([CrownMaxRadius, 0], phase))
+                    for (let i=0, a=0; i<CrownRayCount; ++i, rotateSample(sample))
+                        result = result.concat(sample)
+                    return result
+                }
+
+                let formatPoints = points => {
+                    let round = x => Math.abs(x) < 1e-3? 0: x
+                    let formatPoint = i => `${round(points[i][0])} ${round(points[i][1])}`
+                    let items = []
+                    items.push(`M${formatPoint(0)}`)
+                    for (let i=1, n=points.length; i<n; i+=3)
+                        items.push(`C ${formatPoint(i)} ${formatPoint(i+1)} ${formatPoint(i+2)}`)
+                    return items.join(' ') + ' Z'
+                }
+
+                let time = 0
+                $('#crown').attr('d', formatPoints(crownPoints(time)))
+                let dt = 0.04
+                setInterval(() => {
+                    time += dt
+                    $('#crown').attr('d', formatPoints(crownPoints(time)))
+                }, dt*1000)
+            })
+        </script>
+        <style>
+            svg {
+                background-color: skyblue;
+                width: 500px;
+                height: 300px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <svg id="scene">
+            <g transform="translate(250 150)">
+                <path id="crown" d="" style="fill: #ff0; stroke: #ffa; stroke-width: 4px; opacity: 0.5;"/>
+                <circle cx="0" cy="0" r="90" style="fill: #ff6;"/>
+            </g>
+        </svg>
+    </body>
+</html>
