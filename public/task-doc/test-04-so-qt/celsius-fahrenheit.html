@@ -6,10 +6,10 @@
             $(document).ready(function() {
                 let scene$ = $('#scene')
                 let data = [{
-                    label: 'Градусы по Цельсию',
+                    label: '\xb0\x00C',
                     output: t => 9*t/5+32
                 }, {
-                    label: 'Градусы по Фаренгейту',
+                    label: '\xb0\x00F',
                     output: t => 5*(t-32)/9
                 }]
                 let input = 0;
@@ -49,12 +49,16 @@
                 background-color: #eee;
             }
             input[type="text"] {
+                width: 180px;
                 border: 1px solid #888;
             }
             #scene {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
+            }
+            table {
+                width: 100%;
             }
         </style>
     </head>
