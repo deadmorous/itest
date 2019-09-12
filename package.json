@@ -13,7 +13,6 @@
     "express-flash": "0.0.2",
     "express-session": "^1.15.6",
     "jade": "~1.11.0",
-    "katex": "^0.9.0-alpha2",
     "line-input-stream": "^1.0.1",
     "lodash": "^4.17.4",
     "morgan": "~1.7.0",
