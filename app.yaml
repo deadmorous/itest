@@ -7,9 +7,22 @@ env_variables:
 
 handlers:
 - url: /stylesheets
-  static_dir: stylesheets
+  static_dir: public/stylesheets
+
+- url: /javascripts
+  static_dir: public/javascripts
+  
+- url: /task-doc
+  static_dir: public/task-doc
+
+- url: /task-images
+  static_dir: public/task-images
+
+- url: /pickr-widget
+  static_dir: node_modules/pickr-widget/dist
 
 - url: /.*
   secure: always
   redirect_http_response_code: 301
   script: auto
+
