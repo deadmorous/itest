@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use(express.static(path.join(__dirname, 'node_modules', 'katex', 'dist')))
-app.use('/pickr-widget', express.static(path.join(__dirname, 'node_modules', 'pickr-widget', 'dist')))
+// app.use('/pickr-widget', express.static(path.join(__dirname, 'node_modules', 'pickr-widget', 'dist')))
 app.use(session({
     secret: 'ccdefcb9-f6f3-438b-aa52-22e4c0ebf31f',
     resave: false,

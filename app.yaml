@@ -19,7 +19,7 @@ handlers:
   static_dir: public/task-images
 
 - url: /pickr-widget
-  static_dir: node_modules/pickr-widget/dist
+  static_dir: public/pickr-widget
 
 - url: /.*
   secure: always
