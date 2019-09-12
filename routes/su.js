@@ -63,6 +63,7 @@ router
                 console.log(err)
                 return res.status(500).send('Unable to load data file list')
             }
+            files = files.filter(name => !!name.match(/\.json$/))
             res.render('su', {
                 studentData: sd.data,
                 files: files,
